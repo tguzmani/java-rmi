@@ -6,9 +6,12 @@ public class Client {
     int b = 5;
 
     try {
-      System.out.println(Constants.URL);
-      IAdder remote = (IAdder) Naming.lookup(Constants.URL);
-      System.out.println("10 + 5 = " + remote.add(a, b));
+      ICalculator serverSoprano = (ICalculator) Naming.lookup(Constants.URL_SOPRANO);
+      ICalculator serverXPS = (ICalculator) Naming.lookup(Constants.URL_XPS);
+
+      System.out.println("[Soprano] 10 + 5 = " + serverSoprano.add(a, b));
+      System.out.println("[XPS] 10 * 5 = " + serverXPS.times(a, b));
+
     } catch (Exception e) {
       e.printStackTrace();
     }
